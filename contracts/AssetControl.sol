@@ -20,7 +20,7 @@ contract AssetControl is Ownable, TokenWallet{
     uint public counterLastAddr = 0;
     
     constructor(uint setPeriodTime, address setFirstAddr, address setMiddleAddr, address setLastCAddr, uint setPercentFirstAddr, uint setPercentMiddleAddr, uint setPercentLastAddr){
-        require(setPercentFirstAddr+setPercentMiddleAddr+setPercentLastAddr == 100, '100 is all we got');
+        require(setPercentFirstAddr+setPercentMiddleAddr+setPercentLastAddr == 100, 'Total percent must be 100!');
 
         periodTime = setPeriodTime;
         
