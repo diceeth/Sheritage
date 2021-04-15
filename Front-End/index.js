@@ -615,3 +615,10 @@ if (window.ethereum) {
       document.getElementById('balance').innerHTML = info/1000000000000000000;
     });    
   }
+
+  function releaseAsset() {
+    contract.methods.releaseToken().send( {from: account}).then( function(tx) { 
+        console.log("Transaction: ", tx);
+        document.getElementById('statusRelease').innerHTML = 'Success!'; 
+      });  
+  }
