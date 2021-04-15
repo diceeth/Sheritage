@@ -599,15 +599,6 @@ if (window.ethereum) {
     });
     $("#transferToken").val('');
   }
-
-//   function wdSetInfo() {
-//     info = $("#newWd").val();
-//     contract.methods.withdraw(info).send( {from: account, value: info}).then( function(tx) { 
-//       console.log("Transaction: ", tx); 
-//     });
-//     $("#newWd").val('');
-//   }
-
   
     function checkBalance() {
     contract.methods.balanceOf(account).call({}).then( function( info ) { 
