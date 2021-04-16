@@ -23,7 +23,7 @@ contract AssetControl is Ownable, TokenWallet{
     // 0x32a672D6A26758e3493b59749c614A08078044E1
     // 0xa1a5628EaEeeE529Cb62f3ef63A7de4B72726bCD
     
-    uint totalpercent = 100;
+    uint totalpercent;
     
     mapping (address => User) public userStructs;
     address[] userAddresses;
@@ -33,10 +33,11 @@ contract AssetControl is Ownable, TokenWallet{
         _;
     }
     
+    
    function addUser(address _userAddress, uint _getPercent) public onlyOwner{
-        totalpercent = totalpercent - _getPercent;
-        require(totalpercent >= 0, '100% over');
-
+        totalpercent += _getPercent;
+        require(totalpercent <= 100, '100% over');
+                
         userStructs[_userAddress].userAddress = _userAddress;
         userStructs[_userAddress].getPercent = _getPercent;
         userStructs[_userAddress].addressCounter = 0;
