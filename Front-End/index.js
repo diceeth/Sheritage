@@ -1,6 +1,3 @@
-// Source code to interact with smart contract
-
-// web3 provider with fallback for old version
 if (window.ethereum) {
     window.web3 = new Web3(window.ethereum)
     try {
@@ -21,7 +18,6 @@ if (window.ethereum) {
   }
   console.log (window.web3.currentProvider)
   
-  // contractAddress and abi are setted after contract deploy
   var contractAddress = '0xCE774F7c7354ebB474775415a723869cC2663294';
   var abi = [
 	{
@@ -573,7 +569,6 @@ if (window.ethereum) {
   //contract instance
   contract = new web3.eth.Contract(abi, contractAddress);
   
-  // Accounts
   var account;
   
   web3.eth.getAccounts(function(err, accounts) {
@@ -590,7 +585,7 @@ if (window.ethereum) {
     web3.eth.defaultAccount = account;
   });
   
-//   Smart contract functions
+
   function transferToken() {
     infoAddress = $("#addressTransfer").val();
     infoAmount = $("#amountTransfer").val();
