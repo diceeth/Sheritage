@@ -504,38 +504,38 @@ if (window.ethereum) {
   });
   
 
-	function transferToken() {
-		infoAddress = $("#addressTransfer").val();
-		infoAmount = $("#amountTransfer").val();
+function transferToken() {
+	infoAddress = $("#addressTransfer").val();
+	infoAmount = $("#amountTransfer").val();
 
-		contract.methods.transferToken(infoAddress, infoAmount).send( {from: account}).then( function(tx) { 
-		console.log("Transaction: ", tx); 
-		});
+	contract.methods.transferToken(infoAddress, infoAmount).send( {from: account}).then( function(tx) { 
+	console.log("Transaction: ", tx); 
+	});
 
-		$("#transferToken").val('');
-  	}
+	$("#transferToken").val('');
+}
 
-	function addAddress() {
-		infoAddress = $("#addressRelease").val();
-		infoAmount = $("#getPercent").val();
+function addAddress() {
+	infoAddress = $("#addressRelease").val();
+	infoAmount = $("#getPercent").val();
 
-		contract.methods.addUser(infoAddress, infoAmount).send( {from: account}).then( function(tx) { 
-		console.log("Transaction: ", tx); 
-		});
+	contract.methods.addUser(infoAddress, infoAmount).send( {from: account}).then( function(tx) { 
+	console.log("Transaction: ", tx); 
+	});
 
-		$("#transferToken").val('');
-  	}
-  
-	function checkBalance() {
-		contract.methods.balanceOf(account).call({}).then( function( info ) { 
-			console.log("info: ", info);
-			document.getElementById('balance').innerHTML = info/1000000000000000000;
-		});    
- 	}
+	$("#transferToken").val('');
+}
 
-  	function releaseAssets() {
-		contract.methods.releaseAsset().send( {from: account}).then( function(tx) { 
-			console.log("Transaction: ", tx);
-			document.getElementById('statusRelease').innerHTML = 'Success!'; 
-		});  
-  	}
+function checkBalance() {
+	contract.methods.balanceOf(account).call({}).then( function( info ) { 
+		console.log("info: ", info);
+		document.getElementById('balance').innerHTML = info/1000000000000000000;
+	});    
+}
+
+function releaseAssets() {
+	contract.methods.releaseAsset().send( {from: account}).then( function(tx) { 
+		console.log("Transaction: ", tx);
+		document.getElementById('statusRelease').innerHTML = 'Success!'; 
+	});  
+}
