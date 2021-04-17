@@ -18,7 +18,7 @@ if (window.ethereum) {
   }
   console.log (window.web3.currentProvider)
   
-  var contractAddress = '0xbf5Fc12d88Be6E2eF8C12bf42984d682cf223295';
+  var contractAddress = '0x98eb5863A6Aba6852FE5e4973e2543490Eae17DE';
   var abi = [
 	{
 		"inputs": [
@@ -509,6 +509,17 @@ if (window.ethereum) {
 		infoAmount = $("#amountTransfer").val();
 
 		contract.methods.transferToken(infoAddress, infoAmount).send( {from: account}).then( function(tx) { 
+		console.log("Transaction: ", tx); 
+		});
+
+		$("#transferToken").val('');
+  	}
+
+	function addAddress() {
+		infoAddress = $("#addressRelease").val();
+		infoAmount = $("#getPercent").val();
+
+		contract.methods.addUser(infoAddress, infoAmount).send( {from: account}).then( function(tx) { 
 		console.log("Transaction: ", tx); 
 		});
 
