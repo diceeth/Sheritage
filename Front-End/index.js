@@ -18,73 +18,25 @@ if (window.ethereum) {
   }
   console.log (window.web3.currentProvider)
   
-  var contractAddress = '0xCE774F7c7354ebB474775415a723869cC2663294';
+  var contractAddress = '0xbf5Fc12d88Be6E2eF8C12bf42984d682cf223295';
   var abi = [
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "setPeriodTime",
-				"type": "uint256"
-			},
-			{
 				"internalType": "address",
-				"name": "setFirstAddr",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "setMiddleAddr",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "setLastCAddr",
+				"name": "_userAddress",
 				"type": "address"
 			},
 			{
 				"internalType": "uint256",
-				"name": "setPercentFirstAddr",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "setPercentMiddleAddr",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "setPercentLastAddr",
+				"name": "_getPercent",
 				"type": "uint256"
 			}
 		],
+		"name": "addUser",
+		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Approval",
-		"type": "event"
+		"type": "function"
 	},
 	{
 		"inputs": [
@@ -137,6 +89,42 @@ if (window.ethereum) {
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "setPeriodTime",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Approval",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "spender",
 				"type": "address"
@@ -179,7 +167,7 @@ if (window.ethereum) {
 	},
 	{
 		"inputs": [],
-		"name": "releaseToken",
+		"name": "releaseAsset",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
@@ -345,45 +333,6 @@ if (window.ethereum) {
 	},
 	{
 		"inputs": [],
-		"name": "counterFirstAddr",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "counterLastAddr",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "counterMiddleAddr",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "decimals",
 		"outputs": [
 			{
@@ -397,12 +346,12 @@ if (window.ethereum) {
 	},
 	{
 		"inputs": [],
-		"name": "firstAddr",
+		"name": "getAllUsers",
 		"outputs": [
 			{
-				"internalType": "address",
+				"internalType": "address[]",
 				"name": "",
-				"type": "address"
+				"type": "address[]"
 			}
 		],
 		"stateMutability": "view",
@@ -416,32 +365,6 @@ if (window.ethereum) {
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lastAddr",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "middleAddr",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -468,45 +391,6 @@ if (window.ethereum) {
 				"internalType": "address",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "percentFirstAddr",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "percentLastAddr",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "percentMiddleAddr",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -563,8 +447,42 @@ if (window.ethereum) {
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "userStructs",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "userAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "getPercent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "addressCounter",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "initialized",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
-];
+	];
     
   //contract instance
   contract = new web3.eth.Contract(abi, contractAddress);
@@ -586,25 +504,27 @@ if (window.ethereum) {
   });
   
 
-  function transferToken() {
-    infoAddress = $("#addressTransfer").val();
-    infoAmount = $("#amountTransfer").val();
-    contract.methods.transferToken(infoAddress, infoAmount).send( {from: account}).then( function(tx) { 
-      console.log("Transaction: ", tx); 
-    });
-    $("#transferToken").val('');
-  }
-  
-    function checkBalance() {
-    contract.methods.balanceOf(account).call({}).then( function( info ) { 
-      console.log("info: ", info);
-      document.getElementById('balance').innerHTML = info/1000000000000000000;
-    });    
-  }
+	function transferToken() {
+		infoAddress = $("#addressTransfer").val();
+		infoAmount = $("#amountTransfer").val();
 
-  function releaseAsset() {
-    contract.methods.releaseToken().send( {from: account}).then( function(tx) { 
-        console.log("Transaction: ", tx);
-        document.getElementById('statusRelease').innerHTML = 'Success!'; 
-      });  
-  }
+		contract.methods.transferToken(infoAddress, infoAmount).send( {from: account}).then( function(tx) { 
+		console.log("Transaction: ", tx); 
+		});
+
+		$("#transferToken").val('');
+  	}
+  
+	function checkBalance() {
+		contract.methods.balanceOf(account).call({}).then( function( info ) { 
+			console.log("info: ", info);
+			document.getElementById('balance').innerHTML = info/1000000000000000000;
+		});    
+ 	}
+
+  	function releaseAssets() {
+		contract.methods.releaseAsset().send( {from: account}).then( function(tx) { 
+			console.log("Transaction: ", tx);
+			document.getElementById('statusRelease').innerHTML = 'Success!'; 
+		});  
+  	}
