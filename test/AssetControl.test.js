@@ -26,19 +26,10 @@ contract('AssetControl', accounts => {
         assert(parseFloat(result/1000000000000000000) === amountToken);
     });
 
-    it('Add User1 Success!', async() => {
-        console.log(account2);
-        const result = await assetControlContract.addUser(account2,50);
-    });
-
-    it('Add User2 Success!', async() => {
-        console.log(account3);
-        const result = await assetControlContract.addUser(account3,25);
-    });
-
-    it('Add User3 Success!', async() => {
-        console.log(account4);
-        const result = await assetControlContract.addUser(account4,25);
+    it('Add User Success!', async() => {
+        await assetControlContract.addUser(account2,50);
+        await assetControlContract.addUser(account3,25);
+        await assetControlContract.addUser(account4,25);
     });
 
     it('Check BalanceOf Success!', async() => {
