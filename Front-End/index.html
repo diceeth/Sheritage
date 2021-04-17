@@ -14,6 +14,8 @@
     <body>
         <div>
             <h3 class="sub-header">AssetControl</h3>
+            <br/>
+            <h3 class="sub-header">Transfer</h3>
             <form class="form-inline" role="form">
               <div class="form-group">
                 <table>
@@ -34,7 +36,31 @@
               <a href="#" onclick="transferToken()" class="btn btn-primary">Set</a>
             </form>
           </div>
-        </div>    
+        </div> 
+        
+        <div>
+          <h3 class="sub-header">Add User</h3>
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <table>
+              <tr>
+                  <td><label for="addressRelease">Address:</label> </td>
+                  <td>
+                      <input class="form-control" id="addressRelease">
+                    </td>
+              </tr>
+                <tr>
+                  <td><label for="getPercent">Percent:</label> </td>
+                  <td>
+                    <input class="form-control" id="getPercent">
+                  </td>                          
+                </tr>
+              </table>
+            </div>
+            <a href="#" onclick="addAddress()" class="btn btn-primary">Set</a>
+          </form>
+        </div>
+      </div> 
 
 
         <div class="row">
@@ -60,7 +86,7 @@
             <div>
               <h3 class="sub-header">Release</h3>
               <form class="form-inline" role="form">
-                <a href="#" onclick="releaseAsset()" class="btn btn-primary">Release</a>
+                <a href="#" onclick="releaseAssets()" class="btn btn-primary">Release</a>
                 <div class="form-group">
                   <table>
                     <tr>
