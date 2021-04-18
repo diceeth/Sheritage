@@ -23,7 +23,7 @@ contract('AssetControl', accounts => {
     it('Transfer Success!', async() => {
         await assetControlContract.transferToken(account2, amountToken);
         const result = await assetControlContract.balanceOf(account2);
-        assert(parseFloat(result/1000000000000000000) === amountToken);
+        assert(parseFloat(result/1000000000000000000) === 100);
     });
 
     it('Add User Success!', async() => {
