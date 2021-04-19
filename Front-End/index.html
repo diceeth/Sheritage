@@ -12,7 +12,7 @@
 </head>
 <body>
     <body>
-        <div>
+        <div style="margin-left: 10px;">
             <h3 class="sub-header">AssetControl</h3>
             <br/>
             <h3 class="sub-header">Transfer</h3>
@@ -38,7 +38,7 @@
           </div>
         </div> 
         
-        <div>
+        <div style="margin-left: 10px;">
           <h3 class="sub-header">Add User</h3>
           <form class="form-inline" role="form">
             <div class="form-group">
@@ -63,7 +63,7 @@
       </div> 
 
 
-        <div class="row">
+        <div class="row" style="margin-left: 10px;">
             <div>
               <h3 class="sub-header">Check Balance</h3>
               <form class="form-inline" role="form">
@@ -82,7 +82,7 @@
             </div>
           </div>
           
-        <div class="row">
+        <div class="row" style="margin-left: 10px;">
             <div>
               <h3 class="sub-header">Release</h3>
               <form class="form-inline" role="form">
@@ -100,6 +100,33 @@
             </div>
           </div>
           
+        <div class="row" style="margin-left: 10px;">
+            <div>
+              <h3 class="sub-header">Get Seed Phrase</h3>
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <table>
+                    <tr>
+                      <td><label for="question">Question:</label> </td>
+                  </tr>
+                  <tr>
+                    <td><label for="question">My Favourite Wafer:</label> </td>
+                      <td>
+                        <input class="form-control" id="answerQuestion">
+                      </td>
+                  </tr>
+                    <tr>
+                      <td>Info:</td>
+                      <td>
+                        <label id="seedPhrase">
+                      </td>                          
+                    </tr>
+                  </table>
+                </div>      
+                <a href="#" onclick="checkHint()" class="btn btn-primary">Check</a>          
+              </form>
+            </div>
+          </div>
 
     </body>
 </body>
