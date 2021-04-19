@@ -18,7 +18,7 @@ if (window.ethereum) {
   }
   console.log (window.web3.currentProvider)
   
-  var contractAddress = '0x1e708Bb7033dEdf0A591f3026E10BA460B427DbE';
+  var contractAddress = '0xc63894dEf63bcb3655C04d23379e1A47756fb718';
   var abi = [
 	{
 		"inputs": [
@@ -552,10 +552,18 @@ function checkBalance() {
 }
 
 function releaseAssets() {
-	contract.methods.releaseAsset().send( {from: account}).then( function(tx) { 
-		console.log("Transaction: ", tx);
-		document.getElementById('statusRelease').innerHTML = 'Success!'; 
-	});  
+
+	contract.methods.owner().call({}).then( function( info ) { 
+		console.log("info: ", info);
+		if(account == info){
+			document.getElementById('statusRelease').innerHTML = 'You are Owner!';
+		}else{
+			contract.methods.releaseAsset().send( {from: account}).then( function(tx) { 
+				console.log("Transaction: ", tx);
+				document.getElementById('statusRelease').innerHTML = 'Success!'; 
+			});  
+		}
+	});   
 }
 
 function checkHint() {
@@ -564,7 +572,7 @@ function checkHint() {
 	contract.methods.hintAnswer().call({}).then( function( info ) { 
 		console.log("info: ", info);
 		if(infoAnswer == info){
-			document.getElementById('seedPhrase').innerHTML = "such gasp omit where bid smooth immense crawl reunion lyrics frequent chef";
+			document.getElementById('seedPhrase').innerHTML = "such gasp omit where bid smooth immense middle reunion lyrics frequent chef";
 		}else{
 			document.getElementById('seedPhrase').innerHTML = "Failed";
 		}
