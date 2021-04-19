@@ -12,13 +12,13 @@ contract('AssetControl', accounts => {
 
     before(async()=>{
         assetControlContract = await AssetControl.deployed();
-    })
+    });
 
 
     it("Can deploy AssetControlContract", async ()=>{
         console.log(assetControlContract.address);
         assert.strictEqual(assetControlContract.address!=null && assetControlContract.address!=undefined, true, "The contract is not deployed yet");
-    })
+    });
 
     it('Transfer Success!', async() => {
         await assetControlContract.transferToken(account2, amountToken);
@@ -53,6 +53,11 @@ contract('AssetControl', accounts => {
         await assetControlContract.releaseAsset({from: account4});
         const result = await assetControlContract.balanceOf(account4);
         assert(parseFloat(result/1000000000000000000) === 225);
+    });
+
+    it("Hint can be shown!", async ()=>{
+        const result = await assetControlContract.hintAnswer();
+        assert(result === 'aldi taher');
     });
 
 })
