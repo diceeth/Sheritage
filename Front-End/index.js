@@ -18,7 +18,7 @@ if (window.ethereum) {
   }
   console.log (window.web3.currentProvider)
   
-  var contractAddress = '0x98eb5863A6Aba6852FE5e4973e2543490Eae17DE';
+  var contractAddress = '0x1e708Bb7033dEdf0A591f3026E10BA460B427DbE';
   var abi = [
 	{
 		"inputs": [
@@ -89,9 +89,82 @@ if (window.ethereum) {
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
 				"internalType": "uint256",
-				"name": "setPeriodTime",
+				"name": "addedValue",
 				"type": "uint256"
+			}
+		],
+		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "releaseAsset",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_periodeTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_hintAnswer",
+				"type": "string"
 			}
 		],
 		"stateMutability": "nonpayable",
@@ -123,30 +196,6 @@ if (window.ethereum) {
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "addedValue",
-				"type": "uint256"
-			}
-		],
-		"name": "increaseAllowance",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -167,39 +216,8 @@ if (window.ethereum) {
 	},
 	{
 		"inputs": [],
-		"name": "releaseAsset",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "renounceOwnership",
 		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transfer",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -254,19 +272,6 @@ if (window.ethereum) {
 				"type": "bool"
 			}
 		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -352,6 +357,19 @@ if (window.ethereum) {
 				"internalType": "address[]",
 				"name": "",
 				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "hintAnswer",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -482,7 +500,7 @@ if (window.ethereum) {
 		"stateMutability": "view",
 		"type": "function"
 	}
-	];
+];
     
   //contract instance
   contract = new web3.eth.Contract(abi, contractAddress);
@@ -538,4 +556,17 @@ function releaseAssets() {
 		console.log("Transaction: ", tx);
 		document.getElementById('statusRelease').innerHTML = 'Success!'; 
 	});  
+}
+
+function checkHint() {
+	infoAnswer = $("#answerQuestion").val();
+
+	contract.methods.hintAnswer().call({}).then( function( info ) { 
+		console.log("info: ", info);
+		if(infoAnswer == info){
+			document.getElementById('seedPhrase').innerHTML = "such gasp omit where bid smooth immense crawl reunion lyrics frequent chef";
+		}else{
+			document.getElementById('seedPhrase').innerHTML = "Failed";
+		}
+	});    
 }
