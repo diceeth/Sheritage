@@ -1,19 +1,15 @@
 pragma solidity 0.8.0;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
-import "./TokenWallet.sol";
+import "./FAMtoken.sol";
 
 
-contract AssetControl is Ownable, TokenWallet{
+contract Sheritage is Ownable, FAMtoken{
 
     uint public periodTime;
-
-    string public hintAnswer;
-
     
-    constructor(uint _periodeTime, string memory _hintAnswer){
+    constructor(uint _periodeTime){
         periodTime = _periodeTime;
-        hintAnswer = _hintAnswer;
         super;
     }
     
@@ -40,7 +36,7 @@ contract AssetControl is Ownable, TokenWallet{
         _;
     }
     
-   function addUser(address _userAddress, uint _getPercent) public onlyOwner{
+  function addUser(address _userAddress, uint _getPercent) public onlyOwner{
         require(!userStructs[_userAddress].initialized);
         totalpercent += _getPercent;
         require(totalpercent <= 100, '100% over');
@@ -65,16 +61,10 @@ contract AssetControl is Ownable, TokenWallet{
             }
         }
             
-        for(uint i = 0; i < userAddresses.length ; i++){
-            require(userStructs[userAddresses[i]].userAddress == msg.sender, 'Address need to be add fisrt!');
-            require(userStructs[userAddresses[i]].addressCounter == 0, 'Only Once!');
-            _transfer(owner(), payable(msg.sender), balanceOf(owner())*userStructs[userAddresses[i]].getPercent/(100-alreadyReleasePercent)); 
-            userStructs[userAddresses[i]].addressCounter++;
-        }
-    }
-    
-    function transferToken(address recipient, uint256 amount) external payable{
-        _transfer(_msgSender(), recipient, amount*initialPrice);
+        require(userStructs[msg.sender].userAddress == msg.sender, 'Address need to be add fisrt!');
+        require(userStructs[msg.sender].addressCounter == 0, 'Only Once!');
+        _transfer(address(this), payable(msg.sender), balanceOf(address(this))*userStructs[msg.sender].getPercent/(100-alreadyReleasePercent)); 
+        userStructs[msg.sender].addressCounter++;
     }
     
 } 
