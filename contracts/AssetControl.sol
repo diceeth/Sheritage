@@ -1,13 +1,16 @@
 pragma solidity 0.8.0;
 
-import "openzeppelin-solidity/contracts/access/Ownable.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 import "./TokenWallet.sol";
+
 
 contract AssetControl is Ownable, TokenWallet{
 
     uint public periodTime;
+
     string public hintAnswer;
 
+    
     constructor(uint _periodeTime, string memory _hintAnswer){
         periodTime = _periodeTime;
         hintAnswer = _hintAnswer;
@@ -18,6 +21,7 @@ contract AssetControl is Ownable, TokenWallet{
       address userAddress;
       uint getPercent;
       uint addressCounter;
+      bool initialized;
     }
     
     
@@ -28,23 +32,24 @@ contract AssetControl is Ownable, TokenWallet{
     uint totalpercent;
     
     mapping (address => User) public userStructs;
+    
     address[] userAddresses;
     
     modifier checkPeriod{
-        require(block.timestamp >= periodTime, 'Date Problem!');
+        require(block.timestamp >= periodTime, "Can't be release yet!");
         _;
     }
     
-    
    function addUser(address _userAddress, uint _getPercent) public onlyOwner{
+        require(!userStructs[_userAddress].initialized);
         totalpercent += _getPercent;
         require(totalpercent <= 100, '100% over');
-                
+    
         userStructs[_userAddress].userAddress = _userAddress;
         userStructs[_userAddress].getPercent = _getPercent;
         userStructs[_userAddress].addressCounter = 0;
+        userStructs[_userAddress].initialized = true;
         userAddresses.push(_userAddress);
-      
     }
     
     function getAllUsers() external view returns ( address[] memory) {
@@ -61,13 +66,12 @@ contract AssetControl is Ownable, TokenWallet{
         }
             
         for(uint i = 0; i < userAddresses.length ; i++){
-            if(msg.sender == userAddresses[i]){
-                require(userStructs[userAddresses[i]].addressCounter == 0, 'Only Once!');
-                    _transfer(owner(), payable(msg.sender), balanceOf(owner())*userStructs[userAddresses[i]].getPercent/(100-alreadyReleasePercent)); 
-                    userStructs[userAddresses[i]].addressCounter++;
-                }
-            }
+            require(userStructs[userAddresses[i]].userAddress == msg.sender, 'Address need to be add fisrt!');
+            require(userStructs[userAddresses[i]].addressCounter == 0, 'Only Once!');
+            _transfer(owner(), payable(msg.sender), balanceOf(owner())*userStructs[userAddresses[i]].getPercent/(100-alreadyReleasePercent)); 
+            userStructs[userAddresses[i]].addressCounter++;
         }
+    }
     
     function transferToken(address recipient, uint256 amount) external payable{
         _transfer(_msgSender(), recipient, amount*initialPrice);
