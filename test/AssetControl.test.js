@@ -57,7 +57,7 @@ contract('AssetControl', accounts => {
 
     it("Hint can be shown!", async ()=>{
         const result = await assetControlContract.hintAnswer();
-        assert(result === 'aldi taher');
+        assert(result === 'tango');
     });
 
 })
