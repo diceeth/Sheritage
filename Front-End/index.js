@@ -18,7 +18,7 @@ if (window.ethereum) {
   }
   console.log (window.web3.currentProvider)
   
-  var contractAddress = '0xc63894dEf63bcb3655C04d23379e1A47756fb718';
+  var contractAddress = '0x7499973D6396f8752093f1aE06F506cfDaCCd064';
   var abi = [
 	{
 		"inputs": [
