@@ -26,6 +26,11 @@ contract('Sheritage', accounts => {
         assert.strictEqual(parseFloat(result) === 1000, true);
     });
 
+    it('Check Balance Success!', async() => {
+        const result = await sheritageContract.balanceOf(account1);
+        assert.strictEqual(parseFloat(result) === 0, true);
+    });
+
     it('Add User Success!', async() => {
         await sheritageContract.addUser(account2,50);
         await sheritageContract.addUser(account3,25);
