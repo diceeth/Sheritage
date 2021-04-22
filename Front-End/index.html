@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>AssetControl</title>
+    <title>Sheritage</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
@@ -13,7 +13,7 @@
 <body>
     <body>
         <div style="margin-left: 10px;">
-            <h3 class="sub-header">AssetControl</h3>
+            <h3 class="sub-header">Sheritage</h3>
             <br/>
             <h3 class="sub-header">Transfer</h3>
             <form class="form-inline" role="form">
@@ -31,7 +31,8 @@
                       <input class="form-control" id="amountTransfer">
                     </td>                          
                   </tr>
-                </table>
+                </table> 
+                <p><label id="contractAddr"></p>                         
               </div>
               <a href="#" onclick="transferToken()" class="btn btn-primary">Set</a>
             </form>
@@ -99,35 +100,7 @@
               </form>
             </div>
           </div>
-          
-        <div class="row" style="margin-left: 10px;">
-            <div>
-              <h3 class="sub-header">Get Seed Phrase</h3>
-              <form class="form-inline" role="form">
-                <div class="form-group">
-                  <table>
-                    <tr>
-                      <td><label for="question">Question:</label> </td>
-                  </tr>
-                  <tr>
-                    <td><label for="question">My Favourite Wafer:</label> </td>
-                      <td>
-                        <input class="form-control" id="answerQuestion">
-                      </td>
-                  </tr>
-                    <tr>
-                      <td>Info:</td>
-                      <td>
-                        <label id="seedPhrase">
-                      </td>                          
-                    </tr>
-                  </table>
-                </div>      
-                <a href="#" onclick="checkHint()" class="btn btn-primary">Check</a>          
-              </form>
-            </div>
-          </div>
-
+    
     </body>
 </body>
 </html>
