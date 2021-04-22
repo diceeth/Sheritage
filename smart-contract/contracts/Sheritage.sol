@@ -19,11 +19,6 @@ contract Sheritage is Ownable, FAMtoken{
       bool initialized;
     }
     
-    
-    // 0x75D11987488c7ecE47fFDFa623Bf109b85a1Af33
-    // 0x32a672D6A26758e3493b59749c614A08078044E1
-    // 0xa1a5628EaEeeE529Cb62f3ef63A7de4B72726bCD
-    
     uint totalpercent;
     
     mapping (address => User) public userStructs;
