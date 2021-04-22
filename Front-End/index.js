@@ -18,7 +18,7 @@ if (window.ethereum) {
   }
   console.log (window.web3.currentProvider)
   
-  var contractAddress = '0x7499973D6396f8752093f1aE06F506cfDaCCd064';
+  var contractAddress = '0x205D896D099F807628d82A96D8760E8bb55742C8';
   var abi = [
 	{
 		"inputs": [
@@ -501,7 +501,11 @@ if (window.ethereum) {
 		"type": "function"
 	}
 ];
-    
+
+$(document).ready(function() {
+	document.getElementById('contractAddr').innerHTML = "Contract Address : " + contractAddress;
+});
+
   //contract instance
   contract = new web3.eth.Contract(abi, contractAddress);
   
@@ -530,7 +534,6 @@ function transferToken() {
 	console.log("Transaction: ", tx); 
 	});
 
-	$("#transferToken").val('');
 }
 
 function addAddress() {
@@ -541,13 +544,12 @@ function addAddress() {
 	console.log("Transaction: ", tx); 
 	});
 
-	$("#transferToken").val('');
 }
 
 function checkBalance() {
 	contract.methods.balanceOf(account).call({}).then( function( info ) { 
 		console.log("info: ", info);
-		document.getElementById('balance').innerHTML = info/1000000000000000000;
+		document.getElementById('balance').innerHTML = info;
 	});    
 }
 
@@ -564,17 +566,4 @@ function releaseAssets() {
 			});  
 		}
 	});   
-}
-
-function checkHint() {
-	infoAnswer = $("#answerQuestion").val();
-
-	contract.methods.hintAnswer().call({}).then( function( info ) { 
-		console.log("info: ", info);
-		if(infoAnswer == info){
-			document.getElementById('seedPhrase').innerHTML = "such gasp omit where bid smooth immense middle reunion lyrics frequent chef";
-		}else{
-			document.getElementById('seedPhrase').innerHTML = "Failed";
-		}
-	});    
 }
