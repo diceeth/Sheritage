@@ -23,12 +23,12 @@ contract('Sheritage', accounts => {
     it('Transfer Success!', async() => {
         await sheritageContract.transferToken(sheritageContract.address, amountToken);
         const result = await sheritageContract.balanceOf(sheritageContract.address);
-        assert.strictEqual(parseFloat(result) === 1000, true);
+        assert.strictEqual(result.toNumber() === 1000, true);
     });
 
     it('Check Balance Success!', async() => {
         const result = await sheritageContract.balanceOf(account1);
-        assert.strictEqual(parseFloat(result) === 0, true);
+        assert.strictEqual(result.toNumber() === 0, true);
     });
 
     it('Add User Success!', async() => {
@@ -40,19 +40,19 @@ contract('Sheritage', accounts => {
     it('Relase Asset User1 Success!', async() => {
         await sheritageContract.releaseAsset({from: account2});
         const result = await sheritageContract.balanceOf(account2);
-        assert.strictEqual(parseFloat(result) === 500, true);
+        assert.strictEqual(result.toNumber()  === 500, true);
     });
 
     it('Relase Asset User2 Success!', async() => {
         await sheritageContract.releaseAsset({from: account3});
         const result = await sheritageContract.balanceOf(account3);
-        assert.strictEqual(parseFloat(result) === 250, true);
+        assert.strictEqual(result.toNumber() === 250, true);
     });
 
     it('Relase Asset User3 Success!', async() => {
         await sheritageContract.releaseAsset({from: account4});
         const result = await sheritageContract.balanceOf(account4);
-        assert.strictEqual(parseFloat(result) === 250, true);
+        assert.strictEqual(result.toNumber() === 250, true);
     });
 
 })
